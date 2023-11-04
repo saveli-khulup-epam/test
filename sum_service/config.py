@@ -1,14 +1,16 @@
 from dataclasses import dataclass
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 
 
 @dataclass
 class Config:
     rn_host: str
     rn_port: int
+    host: str
+    port: int
 
 
-def parse_args():
+def parse_args() -> Namespace:
     parser = ArgumentParser()
     parser.add_argument(
         "--rn_host", required=True
@@ -16,11 +18,19 @@ def parse_args():
     parser.add_argument(
         "--rn_port", required=True
     )
+    parser.add_argument(
+        '--host', default='0.0.0.0'
+    )
+    parser.add_argument(
+        '--port', default='8000'
+    )
     return parser.parse_args()
 
 
-# config = Config(**parse_args()._asdict())
+args = parse_args()
 config = Config(
-    rn_host="127.0.0.1",
-    rn_port=8000
+    rn_host=args.rn_host,
+    rn_port=args.rn_port,
+    host=args.host,
+    port=int(args.port)
 )
