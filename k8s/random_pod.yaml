@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: random-pod
+  labels:
+     app: random_number
+spec:
+  containers:
+    - name: random_number_container
+      image: random_number:latest
+      command: ["uvicorn"]
+      args: ["main:app"]
