@@ -9,11 +9,17 @@ rn_url = f"http://{config.rn_host}:{config.rn_port}"
 
 @app.get('/sum')
 def sum_get(num: int):
-    random_num = get(f"{rn_url}/random_number").json()['number']
-    return {
-        "ans": random_num + num,
-        "random_num": random_num
-    }
+    try:
+        random_num = get(f"{rn_url}/random_number").json()['number']
+        return {
+            "ans": random_num + num,
+            "random_num": random_num
+        }
+    except Exception as err:
+        return {
+            "error": str(err),
+            "rn": f"{config.rn_host}:{config.rn_port}"
+        }
 
 
 if __name__ == '__main__':
