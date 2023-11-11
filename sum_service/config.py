@@ -35,3 +35,4 @@ config = Config(
     host=environ.get('HOST', '0.0.0.0'),
     port=environ.get('PORT', 8000)
 )
+print(f"Running with RN: {config.rn_host}:{config.rn_port}")
