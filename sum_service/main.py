@@ -13,7 +13,8 @@ def sum_get(num: int):
         random_num = get(f"{rn_url}/random_number").json()['number']
         return {
             "ans": random_num + num,
-            "random_num": random_num
+            "random_num": random_num,
+            'version': 1
         }
     except Exception as err:
         return {
