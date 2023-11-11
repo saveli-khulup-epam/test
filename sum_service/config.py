@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from argparse import ArgumentParser, Namespace
+from os import environ
 
 
 @dataclass
@@ -29,8 +30,8 @@ def parse_args() -> Namespace:
 
 args = parse_args()
 config = Config(
-    rn_host=args.rn_host,
-    rn_port=args.rn_port,
-    host=args.host,
-    port=int(args.port)
+    rn_host=environ.get('RN_HOST', args.rn_host),
+    rn_port=environ.get('RN_PORT', args.rn_port),
+    host=environ.get('HOST', args.host),
+    port=environ.get('PORT', int(args.port))
 )

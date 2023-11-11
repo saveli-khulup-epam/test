@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: random_number_container
-      image: random_number:latest
+      image: 192.168.56.105:5000/random_number:latest
       command: ["uvicorn"]
       args: ["main:app"]

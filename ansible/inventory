@@ -1,0 +1,5 @@
+[main]
+192.168.56.105 ansible_connection=ssh ansible_ssh_user=main ansible_ssh_pass=123
+
+[vms]
+192.168.56.101 ansible_connection=ssh ansible_ssh_user=vm1 ansible_ssh_pass=123
