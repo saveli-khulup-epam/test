@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sum-pod
-        image: 192.168.56.105:5000/sum_number:latest
+        image: 192.168.56.105:5000/sum_number:prod
         imagePullPolicy: "Always"
         env:
           - name: RN_HOST
