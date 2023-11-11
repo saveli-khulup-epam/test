@@ -6,7 +6,7 @@ metadata:
     run: random-pod
 spec:
   ports:
-  - port: 8080
+  - port: 8000
     protocol: TCP
   selector:
     run: random-pod

@@ -11,4 +11,4 @@ spec:
       command: ["uvicorn"]
       args: ["main:app"]
       ports:
-        - containerPort: 8080
+        - containerPort: 8000
