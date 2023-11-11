@@ -14,6 +14,6 @@ spec:
               service:
                 name: sum-balancer
                 port:
-                  number: 80000
+                  number: 8000
             path: /
             pathType: Prefix
