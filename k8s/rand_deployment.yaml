@@ -17,5 +17,6 @@ spec:
       containers:
       - name: random-pod
         image: 192.168.56.105:5000/random_number:latest
+        imagePullPolicy: "Always"
         ports:
           - containerPort: 8000
