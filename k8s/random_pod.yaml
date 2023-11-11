@@ -3,10 +3,10 @@ kind: Pod
 metadata:
   name: random-pod
   labels:
-     app: random_number
+     app: random-pod
 spec:
   containers:
-    - name: random_number_container
+    - name: random-pod
       image: 192.168.56.105:5000/random_number:latest
       command: ["uvicorn"]
       args: ["main:app"]
