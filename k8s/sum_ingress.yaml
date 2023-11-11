@@ -12,7 +12,7 @@ spec:
         paths:
           - backend:
               service:
-                name: sum-pod
+                name: sum-service
                 port:
                   number: 8000
             path: /
