@@ -30,8 +30,8 @@ def parse_args() -> Namespace:
 
 args = parse_args()
 config = Config(
-    rn_host=environ.get('RN_HOST', args.rn_host),
-    rn_port=environ.get('RN_PORT', args.rn_port),
-    host=environ.get('HOST', args.host),
-    port=environ.get('PORT', int(args.port))
+    rn_host=environ.get('RN_HOST'),
+    rn_port=int(environ.get('RN_PORT')),
+    host=environ.get('HOST', '0.0.0.0'),
+    port=environ.get('PORT', 8000)
 )
