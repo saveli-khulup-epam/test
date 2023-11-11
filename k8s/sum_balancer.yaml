@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sum-balancer
+spec:
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app: sum-pod
+  type: LoadBalancer
