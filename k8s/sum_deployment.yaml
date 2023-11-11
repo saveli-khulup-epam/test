@@ -15,10 +15,6 @@ spec:
         app: sum-pod
     spec:
       containers:
-      - name: random-pod
-        image: 192.168.56.105:5000/random_number:latest
-        ports:
-          - containerPort: 8000
       - name: sum-pod
         image: 192.168.56.105:5000/sum_number:latest
         env:

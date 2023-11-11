@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rand-deployment
+  labels:
+    app: rand
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rand-pod
+  template:
+    metadata:
+      labels:
+        app: rand-pod
+    spec:
+      containers:
+      - name: random-pod
+        image: 192.168.56.105:5000/random_number:latest
+        ports:
+          - containerPort: 8000
