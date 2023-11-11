@@ -10,4 +10,4 @@ spec:
       protocol: TCP
   selector:
     app: sum-pod
-  type: LoadBalancer
+  type: NodePort
