@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sum-deployment
+  labels:
+    app: sum
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sum-pod
+  template:
+    metadata:
+      labels:
+        app: sum-pod
+    spec:
+      containers:
+      - name: random-pod
+        image: 192.168.56.105:5000/random_number:latest
+        ports:
+          - containerPort: 8000
+      - name: sum-pod
+        image: 192.168.56.105:5000/sum_number:latest
+        env:
+          - name: RN_HOST
+            value: "random-pod"
+          - name: RN_PORT
+            value: "8000"
+        ports:
+          - containerPort: 8000
