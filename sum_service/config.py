@@ -28,7 +28,7 @@ def parse_args() -> Namespace:
     return parser.parse_args()
 
 
-args = parse_args()
+# args = parse_args()
 config = Config(
     rn_host=environ.get('RN_HOST'),
     rn_port=int(environ.get('RN_PORT')),
