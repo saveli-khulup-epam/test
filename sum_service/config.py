@@ -29,10 +29,14 @@ def parse_args() -> Namespace:
 
 
 # args = parse_args()
-config = Config(
-    rn_host=environ.get('RN_HOST'),
-    rn_port=int(environ.get('RN_PORT')),
-    host=environ.get('HOST', '0.0.0.0'),
-    port=environ.get('PORT', 8000)
-)
-print(f"Running with RN: {config.rn_host}:{config.rn_port}")
+config = None
+
+
+def set_config():
+    global config
+    config = Config(
+        rn_host=environ.get('RN_HOST'),
+        rn_port=int(environ.get('RN_PORT')),
+        host=environ.get('HOST', '0.0.0.0'),
+        port=environ.get('PORT', 8000)
+    )
