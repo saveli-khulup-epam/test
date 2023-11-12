@@ -17,7 +17,7 @@ def sum_get(num: int):
         return {
             "ans": random_sum(random_num, num),
             "random_num": random_num,
-            'version': 4
+            'version': 5
         }
     except Exception as err:
         return {
