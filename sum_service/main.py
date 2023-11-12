@@ -4,7 +4,6 @@ from uvicorn import run
 from requests import get
 
 app = FastAPI()
-rn_url = f"http://{config.rn_host}:{config.rn_port}"
 
 
 def random_sum(rand, num):
@@ -29,6 +28,7 @@ def sum_get(num: int):
 
 if __name__ == '__main__':
     set_config()
+    rn_url = f"http://{config.rn_host}:{config.rn_port}"
     run(
         app,
         host=config.host,
