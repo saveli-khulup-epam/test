@@ -27,7 +27,7 @@ def sum_get(num: int):
 
 
 if __name__ == '__main__':
-    set_config()
+    config = set_config()
     rn_url = f"http://{config.rn_host}:{config.rn_port}"
     run(
         app,

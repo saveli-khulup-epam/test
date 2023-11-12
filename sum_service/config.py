@@ -33,8 +33,7 @@ config = None
 
 
 def set_config():
-    global config
-    config = Config(
+    return Config(
         rn_host=environ.get('RN_HOST'),
         rn_port=int(environ.get('RN_PORT')),
         host=environ.get('HOST', '0.0.0.0'),
