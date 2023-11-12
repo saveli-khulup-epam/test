@@ -7,12 +7,16 @@ app = FastAPI()
 rn_url = f"http://{config.rn_host}:{config.rn_port}"
 
 
+def random_sum(rand, num):
+    return rand + num
+
+
 @app.get('/sum')
 def sum_get(num: int):
     try:
         random_num = get(f"{rn_url}/random_number").json()['number']
         return {
-            "ans": random_num + num,
+            "ans": random_sum(random_num, num),
             "random_num": random_num,
             'version': 2
         }

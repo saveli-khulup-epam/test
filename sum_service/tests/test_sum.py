@@ -1,7 +1,6 @@
-from config import ENV_URL
-from requests import get
+from main import random_sum
 
 
 def test_sum():
-    resp = get(f"{ENV_URL}/sum", {'num': 2})
-    assert resp.json(), resp.json()
+    out = random_sum(5, 5)
+    assert out == 10
