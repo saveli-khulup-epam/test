@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from config import config
+from config import config, set_config
 from uvicorn import run
 from requests import get
 
@@ -28,6 +28,7 @@ def sum_get(num: int):
 
 
 if __name__ == '__main__':
+    set_config()
     run(
         app,
         host=config.host,
