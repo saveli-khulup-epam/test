@@ -9,4 +9,4 @@ RUN python3 -m venv venv && \
     ./venv/bin/activate && \
     pip3 install -r requirements.txt
 
-ENTRYPOINT ["python3", "main.py"]
+ENTRYPOINT ["python3", "main.py", "--proxy-headers"]
