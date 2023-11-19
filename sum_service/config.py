@@ -7,6 +7,8 @@ from os import environ
 class Config:
     rn_host: str
     rn_port: int
+    cache_host: str
+    cache_port: int
     host: str
     port: int
 
@@ -36,6 +38,8 @@ def set_config():
     return Config(
         rn_host=environ.get('RN_HOST'),
         rn_port=int(environ.get('RN_PORT')),
+        cache_host=environ.get('CACHE_HOST'),
+        cache_port=int(environ.get('CACHE_PORT')),
         host=environ.get('HOST', '0.0.0.0'),
         port=environ.get('PORT', 8000)
     )

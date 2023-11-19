@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: random-pod
+  name: random-service
   labels:
-    run: random-pod
+    run: random-service
 spec:
   type: LoadBalancer
   ports:

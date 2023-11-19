@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from starlette.requests import Request
+
 from config import config, set_config
 from uvicorn import run
-from requests import get
+from requests import get, post
 from multiprocessing import Process
 
 app = FastAPI()
@@ -32,15 +34,32 @@ def stop_load():
     processes.clear()
 
 
+def generate_response_sum(num, random_num):
+    return {
+        "ans": num + random_num,
+        "random_num": random_num,
+        'version': 70
+    }
+
+
 @app.get('/sum')
-def sum_get(num: int):
+def sum_get(num: int, request: Request):
+    client_ip = request.client.host
+    key = f"{client_ip}:{num}"
+    cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
+    if cache_rand:
+        return generate_response_sum(
+            num, cache_rand
+        )
+
     try:
         random_num = get(f"{rn_url}/random_number").json()['number']
-        return {
-            "ans": random_sum(random_num, num),
-            "random_num": random_num,
-            'version': 70
-        }
+        post(
+            f"{cache_url}/set", params={'key': key, 'value': random_num, 'timeout': 5}
+        )
+        return generate_response_sum(
+            num, random_num
+        )
     except Exception as err:
         return {
             "error": str(err),
@@ -51,6 +70,7 @@ def sum_get(num: int):
 if __name__ == '__main__':
     config = set_config()
     rn_url = f"http://{config.rn_host}:{config.rn_port}"
+    cache_url = f"http://{config.cache_host}:{config.cache_port}"
     run(
         app,
         host=config.host,

@@ -22,7 +22,7 @@ spec:
           - containerPort: 8000
         resources:
           requests:
-            cpu: 400m
+            cpu: 200m
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
