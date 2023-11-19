@@ -56,7 +56,7 @@ def sum_get(num: int, request: Request):
     try:
         random_num = get(f"{rn_url}/random_number").json()['number']
         post(
-            f"{cache_url}/set", params={'key': key, 'value': random_num, 'timeout': 5}
+            f"{cache_url}/set", params={'key': key, 'value': random_num, 'timeout_s': 5}
         )
         return generate_response_sum(
             num, random_num
