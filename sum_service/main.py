@@ -46,6 +46,7 @@ def generate_response_sum(num, random_num):
 def sum_get(num: int, request: Request):
     client_ip = request.client.host
     key = f"{client_ip}:{num}"
+    print("Key:", key)
     cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
     if cache_rand:
         return generate_response_sum(
