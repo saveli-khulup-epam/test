@@ -50,7 +50,7 @@ def sum_get(num: int, request: Request):
     cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
     if cache_rand:
         return generate_response_sum(
-            num, cache_rand
+            num, int(cache_rand)
         )
 
     try:
