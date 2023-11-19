@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: sum-service
 spec:
+  type: LoadBalancer
   ports:
     - port: 8000
       targetPort: 8000
