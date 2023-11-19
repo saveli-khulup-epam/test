@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-deployment
+  labels:
+    app: cache-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache-pod
+  template:
+    metadata:
+      labels:
+        app: cache-pod
+    spec:
+      containers:
+      - name: cache-pod
+        image: 192.168.56.105:5000/cache_number:prod
+        imagePullPolicy: "Always"
+        ports:
+          - containerPort: 8000
