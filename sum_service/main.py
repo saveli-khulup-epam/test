@@ -38,7 +38,7 @@ def generate_response_sum(num, random_num):
     return {
         "ans": num + random_num,
         "random_num": random_num,
-        'version': 70
+        'version': 123
     }
 
 
