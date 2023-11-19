@@ -5,6 +5,7 @@ metadata:
   labels:
     run: random-pod
 spec:
+  type: LoadBalancer
   ports:
   - port: 8000
     targetPort: 8000
