@@ -2,12 +2,34 @@ from fastapi import FastAPI
 from config import config, set_config
 from uvicorn import run
 from requests import get
+from multiprocessing import Process
 
 app = FastAPI()
+processes: list[Process] = []
 
 
 def random_sum(rand, num):
     return rand + num
+
+
+def generate_load(x):
+    while True:
+        x * x
+
+
+@app.get('/generate')
+def load(x: int):
+    processes.append(
+        Process(target=generate_load, args=(x,))
+    )
+    processes[-1].start()
+
+
+@app.get('/stop_load')
+def stop_load():
+    for process in processes:
+        process.kill()
+    processes.clear()
 
 
 @app.get('/sum')

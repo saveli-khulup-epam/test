@@ -29,12 +29,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: php-apache
+  name: sum-scaler
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: sum-scaler
+    name: sum-deployment
   minReplicas: 2
   maxReplicas: 10
   metrics:
