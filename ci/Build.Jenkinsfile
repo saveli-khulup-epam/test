@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'COMMIT_HASH', description: 'Commit hash or branch to build on'),
+        string(name: 'BRANCH', description: 'Commit hash or branch to build on'),
         string(name: 'IMAGE_NAME', description: 'Name of docker image to push'),
         string(name: 'SERVICE_FOLDER', description: 'Folder of a service to build'),
         string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
@@ -12,7 +12,7 @@ pipeline {
         stage('PullCheckout') {
             steps {
                 git 'https://github.com/saveli-khulup-epam/test'
-                sh 'git checkout $COMMIT_HASH'
+                sh 'git checkout $BRANCH'
                 script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
                     env.GIT_COMMIT = GIT_COMMIT_HASH.take(5)

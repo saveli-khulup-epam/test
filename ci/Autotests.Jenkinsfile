@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'COMMIT_HASH', description: 'Commit hash or branch to build on'),
+        string(name: 'BRANCH', description: 'Commit hash or branch to build on'),
         string(name: 'ENV_URL', description: 'URL of ENV to run tests on')
     }
 
@@ -10,7 +10,7 @@ pipeline {
         stage('PullCheckout') {
             steps {
                 git 'https://github.com/saveli-khulup-epam/test'
-                sh 'git checkout $COMMIT_HASH'
+                sh 'git checkout $BRANCH'
             }
         }
         stage('Install deps') {
