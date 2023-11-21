@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH', description: 'Commit hash or branch to build on')
+        string(name: 'BRANCH', description: 'Branch to run tests from and use CI script')
         string(name: 'ENV_URL', description: 'URL of ENV to run tests on')
     }
 
