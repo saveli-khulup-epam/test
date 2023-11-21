@@ -52,7 +52,7 @@ pipeline {
               script {
                   build(job: 'Deploy DEV',
                       parameters: [
-                        string(name: 'COMMIT_HASH', value: env.GIT_COMMIT)
+                        string(name: 'COMMIT_HASH', value: env.GIT_COMMIT),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'DEV')
                         ],
