@@ -14,9 +14,9 @@ pipeline {
             sh 'git checkout $BRANCH'
             script {
                 GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                env.GIT_COMMIT = GIT_COMMIT_HASH.take(5)
+                env.DOCKER_TAG = GIT_COMMIT_HASH.take(5)
             }
-      		sh 'echo $GIT_COMMIT'
+      		sh 'echo $DOCKER_TAG'
       		script {
       		    build(job: 'Build',
                       parameters: [
@@ -53,7 +53,7 @@ pipeline {
               script {
                   build(job: 'Deploy',
                       parameters: [
-                        string(name: 'DOCKER_TAG', value: env.GIT_COMMIT),
+                        string(name: 'DOCKER_TAG', value: env.DOCKER_TAG),
                         string(name: 'BRANCH', description: env.BRANCH),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'TEST')
@@ -86,7 +86,7 @@ pipeline {
               script {
                   build(job: 'Deploy',
                       parameters: [
-                        string(name: 'DOCKER_TAG', value: env.GIT_COMMIT),
+                        string(name: 'DOCKER_TAG', value: env.DOCKER_TAG),
                         string(name: 'BRANCH', description: env.BRANCH),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'PROD')
