@@ -1,8 +1,8 @@
 def chooseNode() {
-    if(env.ENV == "TEST") {
-        env.node = "vm3"
-    } else {
+    if(env.ENV == "PROD") {
         env.node = "main"
+    } else {
+        env.node = "vm3"
     }
 }
 
