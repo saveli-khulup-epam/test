@@ -87,7 +87,7 @@ pipeline {
                   build(job: 'Deploy',
                       parameters: [
                         string(name: 'DOCKER_TAG', value: env.DOCKER_TAG),
-                        string(name: 'BRANCH', description: env.BRANCH),
+                        string(name: 'BRANCH', value: env.BRANCH),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'PROD')
                         ],
