@@ -1,5 +1,5 @@
 def chooseNode() {
-    if(env.ENV == "DEV") {
+    if(env.ENV == "TEST") {
         env.node = "vm3"
     } else {
         env.node = "main"

@@ -48,7 +48,7 @@ pipeline {
       		}
         }
       }
-      stage ('Deploy DEV') {
+      stage ('Deploy TEST') {
           steps {
               script {
                   build(job: 'Deploy',
@@ -56,7 +56,7 @@ pipeline {
                         string(name: 'DOCKER_TAG', value: env.GIT_COMMIT),
                         string(name: 'BRANCH', description: env.BRANCH),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
-                        string(name: 'ENV', value: 'DEV')
+                        string(name: 'ENV', value: 'TEST')
                         ],
                         propagate: true,
                         wait: true)
