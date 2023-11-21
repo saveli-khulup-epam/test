@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH', description: 'Commit hash or branch to build on'),
-        string(name: 'IMAGE_NAME', description: 'Name of docker image to push'),
-        string(name: 'SERVICE_FOLDER', description: 'Folder of a service to build'),
+        string(name: 'BRANCH', description: 'Commit hash or branch to build on')
+        string(name: 'IMAGE_NAME', description: 'Name of docker image to push')
+        string(name: 'SERVICE_FOLDER', description: 'Folder of a service to build')
         string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
     }
 

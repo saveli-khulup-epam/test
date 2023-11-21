@@ -14,9 +14,9 @@ pipeline {
     }
 
     parameters {
-        string(name: 'ENV', defaultValue: 'ENV', description: 'Commit hash or branch to build on'),
-        string(name: 'DOCKER_TAG', description: 'Commit hash or branch to build on'),
-        string(name: 'K8S_BRANCH', description: 'Branch from which k8s will be applied'),
+        string(name: 'ENV', defaultValue: 'ENV', description: 'Commit hash or branch to build on')
+        string(name: 'DOCKER_TAG', description: 'Commit hash or branch to build on')
+        string(name: 'K8S_BRANCH', description: 'Branch from which k8s will be applied')
         string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
     }
 
