@@ -16,7 +16,7 @@ pipeline {
     parameters {
         string(name: 'ENV', defaultValue: 'ENV', description: 'Commit hash or branch to build on')
         string(name: 'DOCKER_TAG', description: 'Commit hash or branch to build on')
-        string(name: 'K8S_BRANCH', description: 'Branch from which k8s will be applied')
+        string(name: 'BRANCH', description: 'Branch from which k8s and ci will be applied')
         string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
     }
 
@@ -24,7 +24,7 @@ pipeline {
         stage('ApplyK8s') {
             steps {
                 git 'https://github.com/saveli-khulup-epam/test'
-                sh 'git checkout $K8S_BRANCH'
+                sh 'git checkout $BRANCH'
                 sh 'microk8s.kubectl apply -f k8s'
             }
         }

@@ -53,7 +53,8 @@ pipeline {
               script {
                   build(job: 'Deploy',
                       parameters: [
-                        string(name: 'BRANCH', value: env.BRANCH),
+                        string(name: 'DOCKER_TAG', value: env.GIT_COMMIT),
+                        string(name: 'BRANCH', description: env.BRANCH),
                         string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'DEV')
                         ],
@@ -86,7 +87,8 @@ pipeline {
                   build(job: 'Deploy',
                       parameters: [
                         string(name: 'DOCKER_TAG', value: env.GIT_COMMIT),
-                        string(name: 'K8S_BRANCH', value: env.BRANCH),
+                        string(name: 'BRANCH', description: env.BRANCH),
+                        string(name: 'DOCKER_REGISTRY', value: env.DOCKER_REGISTRY),
                         string(name: 'ENV', value: 'PROD')
                         ],
                         propagate: true,
