@@ -66,7 +66,8 @@ pipeline {
               script {
                   build(job: 'Auto tests',
                       parameters: [
-                        string(name: 'ENV_URL', value: 'http://192.168.56.103')
+                        string(name: 'ENV_URL', value: 'http://192.168.56.103'),
+                        string(name: 'COMMIT_HASH', value: env.GIT_COMMIT)
                         ],
                         propagate: true,
                         wait: true)
