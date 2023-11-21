@@ -3,7 +3,8 @@ pipeline {
 
 	parameters {
         string(name: 'BRANCH', description: 'Branch to build on')
-        string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
+        string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry'),
+        string(name: 'ENV', description: 'ENV to deploy on')
     }
 
     stages {
@@ -75,6 +76,11 @@ pipeline {
           }
       }
       stage ('Deploy PROD') {
+          when {
+            expression {
+                return env.ENV == 'PROD';
+             }
+          }
           steps {
               script {
                   build(job: 'Deploy',
