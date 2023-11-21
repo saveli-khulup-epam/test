@@ -4,7 +4,7 @@ pipeline {
 	parameters {
         string(name: 'BRANCH', description: 'Branch to build on')
         string(name: 'DOCKER_REGISTRY', defaultValue: '192.168.56.105:5000', description: 'IP and PORT of the docker registry')
-        string(name: 'ENV', description: 'ENV to deploy on')
+        string(name: 'ENV', defaultValue: 'TEST', description: 'ENV to deploy on')
     }
 
     stages {
