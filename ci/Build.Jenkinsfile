@@ -15,7 +15,7 @@ pipeline {
                 sh 'git checkout $BRANCH'
                 script {
                     GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
-                    env.GIT_COMMIT = GIT_COMMIT_HASH.take(5)
+                    env.DOCKER_TAG = GIT_COMMIT_HASH.take(5)
                 }
             }
         }
@@ -38,13 +38,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker build $SERVICE_FOLDER -t $DOCKER_REGISTRY/$IMAGE_NAME:$GIT_COMMIT"
+                sh "docker build $SERVICE_FOLDER -t $DOCKER_REGISTRY/$IMAGE_NAME:$DOCKER_TAG"
             }
         }
 
         stage('Upload') {
             steps {
-                sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:$GIT_COMMIT"
+                sh "docker push $DOCKER_REGISTRY/$IMAGE_NAME:$DOCKER_TAG"
             }
         }
     }
