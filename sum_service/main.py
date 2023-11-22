@@ -48,9 +48,10 @@ def sum_get(num: int, request: Request):
     key = f"{client_ip}:{num}"
     if client_ip:
         cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
-        return generate_response_sum(
-            num, int(cache_rand)
-        )
+        if cache_rand:
+            return generate_response_sum(
+                num, int(cache_rand)
+            )
 
     try:
         random_num = get(f"{rn_url}/random_number").json()['number']
