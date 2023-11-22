@@ -44,20 +44,20 @@ def generate_response_sum(num, random_num):
 
 @app.get('/sum')
 def sum_get(num: int, request: Request):
-    client_ip = request.client.host
+    client_ip = request.headers.get('x-real-ip')
     key = f"{client_ip}:{num}"
-    print("Key:", key)
-    cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
-    if cache_rand:
+    if client_ip:
+        cache_rand = get(f"{cache_url}/get", params={'key': key}).json().get('value')
         return generate_response_sum(
             num, int(cache_rand)
         )
 
     try:
         random_num = get(f"{rn_url}/random_number").json()['number']
-        post(
-            f"{cache_url}/set", params={'key': key, 'value': random_num, 'timeout_s': 5}
-        )
+        if client_ip:
+            post(
+                f"{cache_url}/set", params={'key': key, 'value': random_num, 'timeout_s': 5}
+            )
         return generate_response_sum(
             num, random_num
         )
